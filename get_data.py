@@ -33,7 +33,7 @@ def get_dates_as_int(sy,sm,sd,ey,em,ed): #start_year, start_month, start_day, en
 
 if __name__ == "__main__":
     # date = 20230523  #must be int like this
-    dates = get_dates_as_int(2018,1,1,2023,5,22) #start_year: int, start_month: int, start_day: int, end_year: int, end_month: int, end_day: int
+    dates = get_dates_as_int(2018,1,1,2023,5,26) #start_year: int, start_month: int, start_day: int, end_year: int, end_month: int, end_day: int
     stock_code = "000625"
     for date in dates:
         data = get_all_trans_data(api_hq, stock_code, date)
@@ -57,7 +57,7 @@ if __name__ == "__main__":
         csv_columns = ["time", "price", "vol", "turnover"]
         csv_file = stock_code + "_" + str(date) + ".csv"
         try:
-            with open(csv_file, 'w') as csvfile:
+            with open(csv_file, 'w', newline="") as csvfile:
                 writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
                 writer.writeheader()
                 for data in dict_data:
